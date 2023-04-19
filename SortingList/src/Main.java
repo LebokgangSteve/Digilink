@@ -1,12 +1,13 @@
 import java.util.*;
-class Person{
+
+class Person {
     private int id;
     private String name;
 
     public Person(int id, String name)
     {
-        this.id=id;
-        this.name=name;
+        this.id = id;
+        this.name = name;
     }
 
 ////////Getters & setters/////
@@ -50,16 +51,14 @@ class  StringLengthComparator implements Comparator<String> {
     }
 }
 
-class  AlphabeticalComparator implements Comparator<String>{
-
+class  AlphabeticalComparator implements Comparator<String> {
     @Override
     public int compare(String s1, String s2) {
         return s1.compareTo(s2);
     }
 }
 
-class  ReverseAlphabeticalComparator implements Comparator<String>{
-
+class  ReverseAlphabeticalComparator implements Comparator<String> {
     @Override
     public int compare(String s1, String s2) {
         return -s1.compareTo(s2);
@@ -68,7 +67,7 @@ class  ReverseAlphabeticalComparator implements Comparator<String>{
 
 public class Main {
     public static void main(String[] args) {
-        List<String> animals = new ArrayList<String>();
+        final List<String> animals = new ArrayList<String>();
 
         animals.add("cat");
         animals.add("elephant");
@@ -81,13 +80,13 @@ public class Main {
         //Collections.sort(animals, new StringLengthComparator());
         //Collections.sort(animals, new AlphabeticalComparator());
         Collections.sort(animals, new ReverseAlphabeticalComparator());
-        for (String animal: animals)
+        for (String animal : animals)
         {
             System.out.println(animal);
         }
 //////////////////////Sorting integer array list///////////////////////////
 
-        List<Integer> numbers = new ArrayList<Integer>();
+        final List<Integer> numbers = new ArrayList<Integer>();
 
         numbers.add(3);
         numbers.add(36);
@@ -104,19 +103,18 @@ public class Main {
         });
         System.out.println("\n");
 
-        for (Integer number: numbers)
+        for (Integer number : numbers)
         {
-
             System.out.println(number);
         }
 
         /////////////////////////////////Sorting arbitary objects//////////////////////
 
-        List<Person> people= new ArrayList<Person>();
-                people.add(new Person(1,"Joe"));
-                people.add(new Person(2,"Bob"));
-                people.add(new Person(3,"Clare"));
-                people.add(new Person(4,"Sue"));
+        final List<Person> people = new ArrayList<Person>();
+                people.add(new Person(1 ,"Joe"));
+                people.add(new Person(2 ,"Bob"));
+                people.add(new Person(3 ,"Clare"));
+                people.add(new Person(4 ,"Sue"));
 
         System.out.println("\n");
 
@@ -125,12 +123,10 @@ public class Main {
             @Override
             public int compare(Person p1, Person p2) {
                 if (p1.getId() > p2.getId()) {
-                return 1;
-                }
-                else if ((p1.getId() < p2.getId()) ) {
+                    return 1;
+                } else if ((p1.getId() < p2.getId())) {
                         return 1;
                 }
-
                 return 0;
             }
         });
@@ -145,7 +141,7 @@ public class Main {
         });
 
 
-        for (Person person: people){
+        for (Person person : people){
             System.out.println(person);
         }
     }

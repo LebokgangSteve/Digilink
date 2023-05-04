@@ -2,15 +2,20 @@
   "user": [
     {
       "id": "lebokgang@digilink.africa",
-      "fullName": "lebokgang",
-      "password": "12345",
-      "confirmPassword": "12345"
+      "fullName": "Lebokgang Mokgalaka",
+      "password": "Lebokgang@123",
+      "confirmPassword": "Lebokgang@123",
+      "role": "user"
+    }
+  ],
+  "role": [
+    {
+      "code": "admin",
+      "name": "admin"
     },
     {
-      "id": "jhdjfkhjs@aaa.com",
-      "fullName": "jkxhdjkdhfj",
-      "password": "123456",
-      "confirmPassword": "123456"
+      "code": "user",
+      "name": "user"
     }
   ]
 }

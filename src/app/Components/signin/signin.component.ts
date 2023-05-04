@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
   userdata: any;
   constructor(
     private builder: FormBuilder,
@@ -17,7 +17,12 @@ export class SigninComponent {
     private service: AuthService,
     private router: Router
   ) {
-    sessionStorage.clear();
+    //sessionStorage.clear();
+  }
+  ngOnInit(): void {
+    if (this.service.isLoggedIn()) {
+      this.router.navigate(['home']);
+    }
   }
 
   loginform = this.builder.group({

@@ -13,6 +13,18 @@ import { UserDetailsComponent } from './Components/user-details/user-details.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/material.module';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { UpdatepopupComponent } from './Components/updatepopup/updatepopup.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     ContactComponent,
     UserComponent,
     UserDetailsComponent,
+    UpdatepopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +44,17 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    MaterialModule,
+    MatSelectModule,
+    MatCardModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

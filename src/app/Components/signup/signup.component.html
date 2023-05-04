@@ -6,84 +6,98 @@
           <div class="card-body p-5 text-center">
             <h3 class="mb-5">Sign up</h3>
 
-            <!-- Name-->
-            <label class="form-label" for="typeNameX-2">FullName</label>
-            <div class="form-outline mb-4">
-              <input
-                type="text"
-                class="form-control form-control-lg border"
-                (input)="onFullName($any($event.target).value)"
-              />
-            </div>
-
-            <!-- email -->
-            <label class="form-label" for="typeEmailX-2">Email</label>
-            <div class="form-outline mb-4">
-              <input
-                type="email"
-                class="form-control form-control-lg border"
-                (input)="onEmail($any($event.target).value)"
-              />
-            </div>
-
-            <!-- Password -->
-            <label class="form-label" for="typePasswordX-2">Password</label>
-            <div class="form-outline mb-4">
-              <input
-                type="password"
-                class="form-control form-control-lg border"
-                (input)="onPassword($any($event.target).value)"
-              />
-            </div>
-
-            <!-- Confirm password -->
-            <label class="form-label" for="typePasswordX-2"
-              >Confirm Password</label
+            <form
+              class="form1Example3"
+              [formGroup]="registerform"
+              (ngSubmit)="proceedRegistration()"
             >
-            <div class="form-outline mb-4">
-              <input
-                type="password"
-                class="form-control form-control-lg border"
-                (input)="onConfirmPassword($any($event.target).value)"
-              />
-            </div>
+              <!-- Name-->
+              <label class="form-label" for="typeNameX-2">Name</label>
+              <div class="form-outline mb-4">
+                <input
+                  type="text"
+                  class="form-control form-control-lg border"
+                  (input)="onFullName($any($event.target).value)"
+                  input
+                  formControlName="fullName"
+                />
+              </div>
 
-            <!-- Comparing passwords -->
-            <div class="form-outline mb-4" style="color: red">
-              <label
-                class="form-label"
-                for="typePasswordX-2"
-                *ngIf="confirmPassword != password"
-                >Passwords doesn't match!!
-              </label>
-            </div>
+              <!-- email -->
+              <label class="form-label" for="typeEmailX-2">Email</label>
+              <div class="form-outline mb-4">
+                <input
+                  type="email"
+                  class="form-control form-control-lg border"
+                  (input)="onEmail($any($event.target).value)"
+                  input
+                  formControlName="id"
+                />
+              </div>
 
-            <!-- Checkbox -->
-            <div class="form-check d-flex justify-content-start mb-4">
-              <input class="form-check-input" type="checkbox" value="" />
-              <label class="form-check-label" for="form1Example3">
-                Remember password
-              </label>
-            </div>
+              <!-- Password -->
+              <label class="form-label" for="typePasswordX-2">Password</label>
+              <div class="form-outline mb-4">
+                <input
+                  type="password"
+                  class="form-control form-control-lg border"
+                  (input)="onPassword($any($event.target).value)"
+                  input
+                  formControlName="password"
+                />
+              </div>
 
-            <button
-              *ngIf="
-                fullName.length &&
-                email.length &&
-                password.length &&
-                confirmPassword.length != 0 &&
-                confirmPassword === password
-              "
-              class="btn btn-primary btn-lg btn-block"
-              type="submit"
-            >
-              Sign-Up
-            </button>
-            <p>
-              Already have an account? <a routerLink="../signin">Sign In</a>
-            </p>
+              <!-- Confirm password -->
+              <label class="form-label" for="typePasswordX-2"
+                >Confirm Password</label
+              >
+              <div class="form-outline mb-4">
+                <input
+                  type="password"
+                  class="form-control form-control-lg border"
+                  (input)="onConfirmPassword($any($event.target).value)"
+                  input
+                  formControlName="confirmPassword"
+                />
+              </div>
 
-            <hr class="my-4" />
+              <!-- Comparing passwords -->
+              <div class="form-outline mb-4" style="color: red">
+                <label
+                  class="form-label"
+                  for="typePasswordX-2"
+                  *ngIf="confirmPassword != password"
+                  >Passwords doesn't match!!
+                </label>
+              </div>
+
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-start mb-4">
+                <input class="form-check-input" type="checkbox" value="" />
+                <label class="form-check-label" for="form1Example3">
+                  Remember password
+                </label>
+              </div>
+
+              <button
+                *ngIf="
+                  fullName.length &&
+                  email.length &&
+                  password.length &&
+                  confirmPassword.length != 0 &&
+                  confirmPassword === password
+                "
+                class="btn btn-primary btn-lg btn-block"
+                type="submit"
+              >
+                Sign-Up
+              </button>
+              <p>
+                Already have an account? <a routerLink="../signin">Sign In</a>
+              </p>
+
+              <hr class="my-4" />
+            </form>
           </div>
         </div>
       </div>

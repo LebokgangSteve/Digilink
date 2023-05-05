@@ -5,6 +5,13 @@
       "fullName": "Lebokgang Mokgalaka",
       "password": "Lebokgang@123",
       "confirmPassword": "Lebokgang@123",
+      "role": "admin"
+    },
+    {
+      "id": "steve@digilink.africa",
+      "fullName": "steve",
+      "password": "Steve@123",
+      "confirmPassword": "Steve@123",
       "role": "user"
     }
   ],

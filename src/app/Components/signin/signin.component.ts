@@ -32,15 +32,23 @@ export class SigninComponent implements OnInit {
 
   proceedlogin() {
     if (this.loginform.valid) {
-      this.service.GetByCode(this.loginform.value.email).subscribe((res) => {
-        this.userdata = res;
-        if (this.userdata.password === this.loginform.value.password) {
-          sessionStorage.setItem('username', this.userdata.id);
-          this.router.navigate(['home']);
-        } else {
-          window.alert('Invalid credentials');
+      this.service.GetByCode(this.loginform.value.email).subscribe(
+        (res) => {
+          this.userdata = res;
+          if (this.userdata.password === this.loginform.value.password) {
+            sessionStorage.setItem('username', this.userdata.id);
+            sessionStorage.setItem('userrole', this.userdata.role);
+            this.router.navigate(['home']);
+          } else {
+            window.alert('incorrect password');
+          }
+        },
+        (error: Response) => {
+          if (error.status === 404) {
+            window.alert('Username not found');
+          }
         }
-      });
+      );
     } else {
       window.alert('Enter valid data');
     }

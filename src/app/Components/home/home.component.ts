@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthGuard } from 'src/app/guard/auth.guard';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +9,5 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(private router: Router) {}
-
-  logOut() {
-    sessionStorage.clear();
-    this.router.navigate(['signin']);
-  }
+  constructor(private router: Router, private service: AuthService) {}
 }

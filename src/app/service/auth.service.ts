@@ -30,8 +30,13 @@ export class AuthService {
   }
 
   getUserRole() {
-    return sessionStorage.getItem('role') != null
-      ? sessionStorage.getItem('role')?.toString()
-      : '';
+    if (sessionStorage.getItem('role') != null) {
+      return false;
+    } else {
+      return true;
+    }
+    // return sessionStorage.getItem('role') != null
+    //   ? sessionStorage.getItem('role')?.toString()
+    //   : '';
   }
 }

@@ -51,12 +51,17 @@ export class SignupComponent {
 
   proceedRegistration() {
     if (this.registerform.valid) {
-      this.service
-        .ProceedRegistration(this.registerform.value)
-        .subscribe((res) => {
+      this.service.ProceedRegistration(this.registerform.value).subscribe(
+        (res) => {
           alert('Signup successful');
           this.router.navigate(['signin']);
-        });
+        },
+        (error: Response) => {
+          if (error.status === 500) {
+            window.alert('Email already taken');
+          }
+        }
+      );
     } else {
       alert('Please enter valid data'); //need to fix this one
     }

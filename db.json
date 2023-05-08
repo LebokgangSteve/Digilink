@@ -8,10 +8,24 @@
       "role": "admin"
     },
     {
-      "id": "steve@digilink.africa",
-      "fullName": "steve",
-      "password": "Steve@123",
-      "confirmPassword": "Steve@123",
+      "id": "lebza@gmail.com",
+      "fullName": "lebza",
+      "password": "Lebza@123",
+      "confirmPassword": "Lebza@123",
+      "role": "admin"
+    },
+    {
+      "id": "lebza1@gmail.com",
+      "fullName": "lebza",
+      "password": "Lebza@123",
+      "confirmPassword": "Lebza@123",
+      "role": "user"
+    },
+    {
+      "id": "lebza2@gmail.com",
+      "fullName": "lebza2",
+      "password": "Lebza@123",
+      "confirmPassword": "Lebza@123",
       "role": "user"
     }
   ],
@@ -24,5 +38,7 @@
       "code": "user",
       "name": "user"
     }
-  ]
+  ],
+  "deletedUsers": [],
+  "disabledUsers": []
 }

@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatepopupComponent } from '../updatepopup/updatepopup.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user',
@@ -14,7 +15,11 @@ import { UpdatepopupComponent } from '../updatepopup/updatepopup.component';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent {
-  constructor(private service: AuthService, private dialog: MatDialog) {
+  constructor(
+    private http: HttpClient,
+    private service: AuthService,
+    private dialog: MatDialog
+  ) {
     this.loadUser();
   }
   userlist: any;
@@ -36,7 +41,7 @@ export class UserComponent {
       exitAnimationDuration: '500ms',
       width: '50%',
       data: {
-        userecode: code,
+        usercode: code,
       },
     });
 
@@ -45,4 +50,8 @@ export class UserComponent {
     });
   }
   opendialog() {}
+
+  deleteUser(data: any) {
+    this.service.deleteUser(data).subscribe((res) => {});
+  }
 }

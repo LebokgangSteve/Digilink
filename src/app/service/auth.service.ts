@@ -29,14 +29,18 @@ export class AuthService {
     return sessionStorage.getItem('username') != null;
   }
 
+  deleteUser(data: any) {
+    return this.http.delete(this.apiurl + '/' + data);
+  }
+
+  disableUser() {
+    return sessionStorage.getItem('username') != null;
+  }
   getUserRole() {
     if (sessionStorage.getItem('role') != null) {
       return false;
     } else {
       return true;
     }
-    // return sessionStorage.getItem('role') != null
-    //   ? sessionStorage.getItem('role')?.toString()
-    //   : '';
   }
 }

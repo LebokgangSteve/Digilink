@@ -22,7 +22,7 @@
         <ng-container matColumnDef="role">
           <th mat-header-cell mat-sort-header *matHeaderCellDef>Role</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.role === "" ? "Un Assigned" : element.role }}
+            {{ element.role }}
           </td>
         </ng-container>
         <ng-container matColumnDef="action">
@@ -35,6 +35,15 @@
               color="primary"
             >
               Update
+            </button>
+            <button mat-raised-button color="primary">Disable</button>
+            <button
+              *ngIf="element.role !== 'admin'"
+              mat-raised-button
+              color="primary"
+              (click)="deleteUser(element.id)"
+            >
+              Delete
             </button>
           </td>
         </ng-container>

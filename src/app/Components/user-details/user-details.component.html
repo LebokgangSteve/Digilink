@@ -1,60 +1,70 @@
 <!-- User details -->
 <div class="input-group mb-3">
-  <input type="file" class="form-control" id="inputGroupFile02" />
-  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+  <input type="file" class="form-control" />
+  <label class="input-group-text">Upload</label>
 </div>
 
 <form>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Name</label>
+    <div class="col-md-6">
+      <label>Email</label>
       <input
         type="text"
         class="form-control"
-        id="input-group-text"
+        placeholder="Email"
+        formControlName="id"
+        value="{{ emailX }}"
+      />
+    </div>
+    <div class="col-md-6">
+      <label>Name</label>
+      <input
+        type="text"
+        class="form-control"
         placeholder="fullName"
+        value="{{ nameX }}"
       />
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
+    <div class="col-md-6">
+      <label>Password</label>
       <input
         type="password"
         class="form-control"
-        id="inputPassword4"
         placeholder="Password"
+        value="{{ passwordX }}"
       />
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Confirm Password</label>
+    <div class="col-md-6">
+      <label>Confirm Password</label>
       <input
         type="password"
         class="form-control"
-        id="inputPassword4"
         placeholder="Password"
+        value="{{ confirmPasswordX }}"
       />
     </div>
   </div>
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
+  <div class="">
+    <label>Role</label>
     <input
       type="text"
       class="form-control"
-      id="inputAddress"
       placeholder="1234 Main St"
+      value="{{ roleX }}"
     />
   </div>
 
   <div class="form-row">
-    <div class="form-group col-md-4">
+    <!-- <div class="form-group col-md-4">
       <label for="inputState">Province</label>
       <select id="inputState" class="form-control">
         <option selected>Choose...</option>
         <option>Gauteng</option>
         <option>Limpopo</option>
       </select>
-    </div>
+    </div> -->
   </div>
-  <div class="form-group">
+  <div class="">
     <div class="form-check"></div>
   </div>
   <button type="submit" class="btn btn-primary">Save</button>

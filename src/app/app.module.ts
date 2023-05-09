@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { SigninComponent } from './Components/signin/signin.component';
 import { HomeComponent } from './Components/home/home.component';
-import { AboutComponent } from './Components/about/about.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { UserComponent } from './Components/user/user.component';
 import { UserDetailsComponent } from './Components/user-details/user-details.component';
@@ -25,6 +24,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { UpdatepopupComponent } from './Components/updatepopup/updatepopup.component';
+import { DeletepopupComponent } from './deletepopup/deletepopup.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +32,11 @@ import { UpdatepopupComponent } from './Components/updatepopup/updatepopup.compo
     SignupComponent,
     SigninComponent,
     HomeComponent,
-    AboutComponent,
     ContactComponent,
     UserComponent,
     UserDetailsComponent,
     UpdatepopupComponent,
+    DeletepopupComponent,
   ],
   imports: [
     BrowserModule,

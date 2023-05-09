@@ -8,6 +8,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatepopupComponent } from '../updatepopup/updatepopup.component';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { DeletepopupComponent } from 'src/app/deletepopup/deletepopup.component';
 
 @Component({
   selector: 'app-user',
@@ -18,7 +21,9 @@ export class UserComponent {
   constructor(
     private http: HttpClient,
     private service: AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
+    private builder: FormBuilder
   ) {
     this.loadUser();
   }
@@ -45,13 +50,52 @@ export class UserComponent {
       },
     });
 
-    popup.afterOpened().subscribe((res) => {
+    popup.afterClosed().subscribe((res) => {
       this.loadUser();
     });
   }
+
+  registerform = this.builder.group({
+    id: this.builder.control(
+      '',
+      Validators.compose([Validators.email, Validators.required])
+    ),
+    fullName: this.builder.control('', Validators.required),
+    password: this.builder.control(
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern(
+          '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+        ),
+      ])
+    ),
+    confirmPassword: this.builder.control(
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern(
+          '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
+        ),
+      ])
+    ),
+    role: this.builder.control('user'),
+  });
+
   opendialog() {}
 
-  deleteUser(data: any) {
-    this.service.deleteUser(data).subscribe((res) => {});
+  deleteUser(code: any) {
+    const deletepopup = this.dialog.open(DeletepopupComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '50%',
+      data: {
+        usercode: code,
+      },
+    });
+
+    deletepopup.afterClosed().subscribe((res) => {
+      this.loadUser();
+    });
   }
 }

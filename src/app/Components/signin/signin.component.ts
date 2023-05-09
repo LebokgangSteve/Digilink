@@ -38,6 +38,8 @@ export class SigninComponent implements OnInit {
           if (this.userdata.password === this.loginform.value.password) {
             sessionStorage.setItem('username', this.userdata.id);
             sessionStorage.setItem('userrole', this.userdata.role);
+            sessionStorage.setItem('fullName', this.userdata.fullName);
+
             this.router.navigate(['home']);
           } else {
             window.alert('incorrect password');

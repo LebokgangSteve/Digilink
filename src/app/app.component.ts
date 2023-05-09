@@ -33,4 +33,8 @@ export class AppComponent implements DoCheck {
       this.isRequired = true;
     }
   }
+
+  getFullName() {
+    return 'Welcome ' + sessionStorage.getItem('fullName');
+  }
 }

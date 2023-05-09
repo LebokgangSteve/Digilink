@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(private http: HttpClient) {}
   apiurl = 'http://localhost:3000/user';
+  apiurldeleted = 'http://localhost:3000/deletedUsers';
 
   GetAll() {
     return this.http.get(this.apiurl);
@@ -29,8 +30,12 @@ export class AuthService {
     return sessionStorage.getItem('username') != null;
   }
 
-  deleteUser(data: any) {
+  delete(data: any) {
     return this.http.delete(this.apiurl + '/' + data);
+  }
+
+  deletedUsers(inputdata: any) {
+    return this.http.post(this.apiurldeleted, inputdata);
   }
 
   disableUser() {

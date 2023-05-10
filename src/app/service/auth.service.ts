@@ -23,7 +23,8 @@ export class AuthService {
   }
 
   UpdateUser(code: any, inputdata: any) {
-    return this.http.put(this.apiurl + '/' + code, inputdata);
+    console.log('updatte');
+    return this.http.put<any>(this.apiurl + '/' + code, inputdata);
   }
 
   isLoggedIn() {

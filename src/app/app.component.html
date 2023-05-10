@@ -29,13 +29,12 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a *ngIf="checkRole()" class="nav-link" routerLink="../user"
+            >Dashboard</a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="../home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="checkRole()" class="nav-link" routerLink="../user">Users</a>
         </li>
       </ul>
       <!-- Left links -->
@@ -68,7 +67,14 @@
           aria-labelledby="navbarDropdownMenuAvatar"
         >
           <li>
-            <a class="dropdown-item" routerLink="../user-details">My profile</a>
+            <a
+              class="dropdown-item"
+              (click)="update()"
+              type="link"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              >My profile</a
+            >
           </li>
           <li>
             <a class="dropdown-item" routerLink="../about">Settings</a>
@@ -85,7 +91,117 @@
 </nav>
 <!-- Navbar -->
 <div class="container mt-3">
-  <h2>{{ getFullName() }}</h2>
+  <!-- User modal -->
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-row">
+              <div class="col-md-6">
+                <label>Email</label>
+                <input
+                  disabled="true"
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  value="{{ emailX }}"
+                />
+              </div>
+              <div class="col-md-6">
+                <label>Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="fullName"
+                  value="{{ nameX }}"
+                  (input)="onName($any($event.target).value)"
+                />
+              </div>
+              <div class="col-md-6">
+                <label>Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  value="{{ passwordX }}"
+                  (input)="onPassword($any($event.target).value)"
+                />
+              </div>
+              <div class="col-md-6">
+                <label>Confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  value="{{ confirmPasswordX }}"
+                  (input)="onConfirmPassword($any($event.target).value)"
+                />
+              </div>
+              <div class="form-outline mb-4">
+                <label
+                  class="form-label text-danger"
+                  for="typePasswordX-2"
+                  *ngIf="confirmPasswordX != passwordX"
+                  >Passwords doesn't match!!
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Role</label>
+              <input
+                disabled="true"
+                type="text"
+                class="form-control"
+                placeholder="role"
+                value="{{ roleX }}"
+              />
+            </div>
+
+            <!-- User Profile-->
+
+            <div class="col-md-6">
+              <label>Profile <Picture></Picture></label>
+              <input type="file" class="form-control" id="inputGroupFile02" />
+              <label class="input-group-text">Upload</label>
+            </div>
+
+            <!-- class="btn btn-primary btn-lg btn-block" type="submit" -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button (click)="updateuser()" type="button" class="btn btn-primary">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <h2 *ngIf="isRequired">{{ getFullName() }}</h2> -->
 </div>
 <router-outlet></router-outlet>
 

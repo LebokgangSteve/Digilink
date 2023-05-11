@@ -115,6 +115,7 @@ export class AppComponent implements DoCheck {
     this.service.UpdateUser(this.emailX, this.registerform.value).subscribe(
       (res) => {
         alert('Updated successfully');
+        location.reload();
       },
       (err) => {
         alert('Update unsuccessful, Please try again');

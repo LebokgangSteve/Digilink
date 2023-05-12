@@ -25,6 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { UpdatepopupComponent } from './Components/updatepopup/updatepopup.component';
 import { DeletepopupComponent } from './deletepopup/deletepopup.component';
+import { DisableComponent } from './Components/disable/disable.component';
+import { ActivateComponent } from './Components/activate/activate.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { DeletepopupComponent } from './deletepopup/deletepopup.component';
     UserDetailsComponent,
     UpdatepopupComponent,
     DeletepopupComponent,
+    DisableComponent,
+    ActivateComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,22 +1,18 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject, AfterViewInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 @Component({
-  selector: 'app-deletepopup',
-  templateUrl: './deletepopup.component.html',
-  styleUrls: ['./deletepopup.component.css'],
+  selector: 'app-activate',
+  templateUrl: './activate.component.html',
+  styleUrls: ['./activate.component.css'],
 })
-export class DeletepopupComponent {
-  fullName = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
-
+export class ActivateComponent {
   constructor(
     private toastr: ToastrService,
     private builder: FormBuilder,
@@ -24,12 +20,31 @@ export class DeletepopupComponent {
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router
-  ) {}
+  ) {
+    this.loadDisable();
+  }
+  fullName = '';
+  email = '';
+  password = '';
+  confirmPassword = '';
+  disabledSource: any;
+  unactivelist: any;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  loadDisable() {
+    this.service.GetAllDisabled().subscribe((res) => {
+      this.unactivelist = res;
+      this.disabledSource = new MatTableDataSource(this.unactivelist);
+      this.disabledSource.paginator = this.paginator;
+      this.disabledSource.sort = this.sort;
+    });
+  }
+  displayedColumns: string[] = ['name', 'email', 'role', 'action'];
 
   editdata: any;
   ngOnInit(): void {
-    this.service.GetAllRole().subscribe((res) => {
-      this.rolelist = res;
+    this.service.GetAllDisabled().subscribe((res) => {
+      this.unactivelist = res;
     });
     if (this.data.usercode != null && this.data.usercode != '') {
       this.service.GetByCode(this.data.usercode).subscribe((res) => {
@@ -44,8 +59,6 @@ export class DeletepopupComponent {
       });
     }
   }
-
-  rolelist: any;
   registerform = this.builder.group({
     id: this.builder.control(''),
     fullName: this.builder.control('', Validators.required),
@@ -54,32 +67,18 @@ export class DeletepopupComponent {
     role: this.builder.control('', Validators.required),
   });
 
-  deleteUser() {
+  activateUser() {
     if (this.registerform.valid) {
       this.service.delete(this.registerform.value.id).subscribe((res) => {});
-      this.service.deletedUsers(this.registerform.value).subscribe((res) => {});
-     
-      alert('Deleted successfully');
-      this.router.navigate(['user']);
+      this.service
+        .activateUsers(this.registerform.value)
+        .subscribe((res) => {});
+
+      alert('User activated successfully');
+
       this.dialog.closeAll();
     } else {
-      alert('User Already Deleted');
-      
+      alert('User Already Activated');
     }
-  }
-
-  // checking input box
-  onFullName(value: string) {
-    this.fullName = value;
-  }
-  onEmail(value: string) {
-    this.email = value;
-  }
-  onPassword(value: string) {
-    this.password = value;
-  }
-
-  onConfirmPassword(value: string) {
-    this.confirmPassword = value;
   }
 }

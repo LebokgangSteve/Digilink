@@ -11,7 +11,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DeletepopupComponent } from 'src/app/deletepopup/deletepopup.component';
-
+import { ActivateComponent } from '../activate/activate.component';
+import { DisableComponent } from '../disable/disable.component';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -26,6 +27,7 @@ export class UserComponent {
     private builder: FormBuilder
   ) {
     this.loadUser();
+    this.loadDisable();
   }
   userlist: any;
   dataSource: any;
@@ -98,4 +100,73 @@ export class UserComponent {
       this.loadUser();
     });
   }
+
+  //Disabled user -------------------------------------------------------------------------------------------------------------------------------------------
+  disabledlist: any;
+  disabledSource: any;
+
+  loadDisable() {
+    this.service.GetAllDisabled().subscribe((res) => {
+      this.disabledlist = res;
+      this.disabledSource = new MatTableDataSource(this.disabledlist);
+      this.disabledSource.paginator = this.paginator;
+      this.disabledSource.sort = this.sort;
+    });
+  }
+  displayedDisabled: string[] = ['name', 'email', 'role', 'action'];
+
+  disableUser(code: any) {
+    const disable = this.dialog.open(DisableComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '50%',
+      data: {
+        usercode: code,
+      },
+    });
+
+    disable.afterClosed().subscribe((res) => {
+      this.loadUser();
+    });
+  }
+
+  //Activate user----------------------------------------------------------------------------------------------------------------------------------------------
+  unactiveSource: any;
+  unactivelist: any;
+  loadunActive() {
+    this.service.GetAllDisabled().subscribe((res) => {
+      this.disabledlist = res;
+      this.unactiveSource = new MatTableDataSource(this.unactivelist);
+      this.unactiveSource.paginator = this.paginator;
+      this.unactiveSource.sort = this.sort;
+    });
+  }
+  displayedUnactive: string[] = ['name', 'email', 'role', 'action'];
+  activateUser(code: any) {
+    const activate = this.dialog.open(ActivateComponent, {
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '500ms',
+      width: '50%',
+      data: {
+        usercode: code,
+      },
+    });
+
+    activate.afterClosed().subscribe((res) => {
+      this.loadUser();
+    });
+  }
+
+  // deleted list-----------------------------------------------------------------------------------------------------------------------------------------------------
+  deletedSource: any;
+  deletedlist: any;
+  loadDeleted() {
+    this.service.GetAllDeleted().subscribe((res) => {
+      this.deletedlist = res;
+      this.deletedSource = new MatTableDataSource(this.deletedlist);
+      this.deletedSource.paginator = this.paginator;
+      this.deletedSource.sort = this.sort;
+    });
+  }
+  displayedDeleted: string[] = ['name', 'email', 'role', 'action'];
 }

@@ -8,6 +8,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
   apiurl = 'http://localhost:3000/user';
   apiurldeleted = 'http://localhost:3000/deletedUsers';
+  apiurldisabled = 'http://localhost:3000/disabledUsers';
 
   GetAll() {
     return this.http.get(this.apiurl);
@@ -15,6 +16,14 @@ export class AuthService {
   GetAllRole() {
     return this.http.get('http://localhost:3000/role');
   }
+  GetAllDisabled() {
+    return this.http.get(this.apiurldisabled);
+  }
+
+  GetAllDeleted() {
+    return this.http.get(this.apiurldeleted);
+  }
+
   GetByCode(code: any) {
     return this.http.get(this.apiurl + '/' + code);
   }
@@ -39,8 +48,12 @@ export class AuthService {
     return this.http.post(this.apiurldeleted, inputdata);
   }
 
-  disableUser() {
-    return sessionStorage.getItem('username') != null;
+  disableUsers(inputdata: any) {
+    return this.http.post(this.apiurldisabled, inputdata);
+  }
+
+  activateUsers(inputdata: any) {
+    return this.http.post(this.apiurl, inputdata);
   }
   getUserRole() {
     if (sessionStorage.getItem('role') != null) {

@@ -27,13 +27,6 @@
       "password": "Steve@123",
       "confirmPassword": "Steve@123",
       "role": "user"
-    },
-    {
-      "id": "nomvela@gmail.com",
-      "fullName": "Steve Nomvela",
-      "password": "Nomvela@123",
-      "confirmPassword": "Nomvela@123",
-      "role": "user"
     }
   ],
   "role": [
@@ -55,5 +48,13 @@
       "role": "user"
     }
   ],
-  "disabledUsers": []
+  "disabledUsers": [
+    {
+      "id": "nomvela@gmail.com",
+      "fullName": "Steve Nomvela",
+      "password": "Nomvela@123",
+      "confirmPassword": "Nomvela@123",
+      "role": "user"
+    }
+  ]
 }

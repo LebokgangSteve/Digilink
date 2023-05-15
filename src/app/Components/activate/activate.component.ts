@@ -23,10 +23,7 @@ export class ActivateComponent {
   ) {
     this.loadDisable();
   }
-  fullName = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
+
   disabledSource: any;
   unactivelist: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -49,6 +46,7 @@ export class ActivateComponent {
     if (this.data.usercode != null && this.data.usercode != '') {
       this.service.GetByCode(this.data.usercode).subscribe((res) => {
         this.editdata = res;
+        console.log(this.editdata);
         this.registerform.setValue({
           id: this.editdata.id,
           fullName: this.editdata.fullName,
@@ -70,9 +68,7 @@ export class ActivateComponent {
   activateUser() {
     if (this.registerform.valid) {
       this.service.delete(this.registerform.value.id).subscribe((res) => {});
-      this.service
-        .activateUsers(this.registerform.value)
-        .subscribe((res) => {});
+      this.service.GetAll().subscribe((res) => {});
 
       alert('User activated successfully');
 
